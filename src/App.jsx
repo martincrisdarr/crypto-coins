@@ -1,27 +1,14 @@
-import { useEffect, useState, useSelector, useDispatch } from "react"
-import axios from 'axios'
-import { setAddCrypto } from "./Components/features/counter/cryptosSlice";
+import "rsuite/dist/rsuite.min.css";
+import CoinsMap from "./Components/CoinsMap/CoinsMap";
+import { Routes, Route } from 'react-router-dom'
 function App() {
-  const [info, setInfo] = useState([])
-
-  const cryptos = useSelector(setAddCrypto);
-  const dispatch = useDispatch()
-  const getData = async() => {
-    const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
-    dispatch(setAddCrypto(res.data))
-  }
-  useEffect(()=> {
-    getData()    
-  },[])
   return (
     <>
-      <div>
-        {info.map(i => (
-          <p key={i.id}>{i.symbol}</p>
-        ))}
-      </div>
+      <Routes>
+        <Route path='/' element={<CoinsMap />}/>
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
