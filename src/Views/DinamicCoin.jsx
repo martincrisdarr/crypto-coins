@@ -9,14 +9,14 @@ const styles = {
   fullContainer:
     "w-full h-full mt-16 relative flex justify-center items-center animate__animated animate__fadeInLeft ",
   container:
-    "w-[80%] h-[80%] md:flex justify-between items-center border border-white shadow-2xl rounded-xl p-4 md:p-8 capitalize ",
+    "w-[80%] h-[80%] md:flex justify-between items-center border border-white shadow-2xl rounded-xl p-4 md:p-8 mb-6 capitalize ",
   leftContainer: " flex flex-col gap-4 text-start ",
   rightContainer: "md:w-1/2 ",
   arrow:
     "absolute hidden md:flex  left-8 text-5xl border-2 hover:border-blue-300 rounded-full",
   title: "md:text-[75px]",
   titleContainer: "flex flex-col md:flex-row gap-4 items-start",
-  titleSpan: 'flex items-start',
+  titleSpan: "flex items-start",
   symbol: "text-2xl text-gray-400 uppercase",
   image: "w-16 object-contain",
   price: "text-5xl md:ml-16 mt-6  tracking-wider text-green-500",

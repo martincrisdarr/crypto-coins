@@ -6,15 +6,17 @@ const styles = {
   title: " text-4xl font-semibold hover:text-blue-300 hover:no-underline",
 };
 
-function Navbar({ message, search,display }) {
-  const handleSubmit = e => {
-    e.preventDefault()
-  }
+function Navbar({ message, search, display }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <div className={styles.container}>
-      <Link to='/' className={styles.title}>Coin Market</Link>
-      <form onChange={message} onSubmit={handleSubmit} className={`${display}`} >
-        <InputGroup size="lg" inside >
+      <Link to="/" className={styles.title}>
+        Coin Market
+      </Link>
+      <form onChange={message} onSubmit={handleSubmit} className={`${display}`}>
+        <InputGroup size="lg" inside>
           <Input placeholder="Search your coin" value={search} />
           <InputGroup.Button>
             <SearchIcon />

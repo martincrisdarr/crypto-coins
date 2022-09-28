@@ -1,45 +1,54 @@
-import React, { PureComponent } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import React, { PureComponent } from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 const data = [
   {
-    name: '0',
+    name: "0",
     uv: 4000,
     pv: 2400,
     amt: 2400,
   },
   {
-    name: '1',
+    name: "1",
     uv: 3000,
     pv: 1398,
     amt: 2210,
   },
   {
-    name: '2',
+    name: "2",
     uv: 2000,
     pv: 9800,
     amt: 2290,
   },
   {
-    name: '3',
+    name: "3",
     uv: 2780,
     pv: 3908,
     amt: 2000,
   },
   {
-    name: '4',
+    name: "4",
     uv: 1890,
     pv: 4800,
     amt: 2181,
   },
   {
-    name: '5',
+    name: "5",
     uv: 2390,
     pv: 3800,
     amt: 2500,
   },
   {
-    name: '6',
+    name: "6",
     uv: 3490,
     pv: 4300,
     amt: 2100,
@@ -47,7 +56,7 @@ const data = [
 ];
 
 export default class Example extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/s/customized-legend-event-l19fo';
+  static demoUrl = "https://codesandbox.io/s/customized-legend-event-l19fo";
 
   state = {
     opacity: {
@@ -78,7 +87,7 @@ export default class Example extends PureComponent {
     const { opacity } = this.state;
 
     return (
-      <div style={{ width: '100%' }}>
+      <div style={{ width: "100%" }}>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart
             width={500}
@@ -95,12 +104,25 @@ export default class Example extends PureComponent {
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
-            <Legend onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} />
-            <Line type="monotone" dataKey="pv" strokeOpacity={opacity.pv} stroke="#8884d8" activeDot={{ r: 8 }} />
-            <Line type="monotone" dataKey="uv" strokeOpacity={opacity.uv} stroke="#82ca9d" />
+            <Legend
+              onMouseEnter={this.handleMouseEnter}
+              onMouseLeave={this.handleMouseLeave}
+            />
+            <Line
+              type="monotone"
+              dataKey="pv"
+              strokeOpacity={opacity.pv}
+              stroke="#8884d8"
+              activeDot={{ r: 8 }}
+            />
+            <Line
+              type="monotone"
+              dataKey="uv"
+              strokeOpacity={opacity.uv}
+              stroke="#82ca9d"
+            />
           </LineChart>
         </ResponsiveContainer>
-        
       </div>
     );
   }

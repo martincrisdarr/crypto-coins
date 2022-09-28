@@ -1,12 +1,12 @@
-import React from 'react'
-import CoinsMap from '../Components/CoinsMap/CoinsMap'
+import React from "react";
+import CoinsMap from "../Components/CoinsMap/CoinsMap";
 
 function Home() {
   return (
     <>
       <CoinsMap />
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;
