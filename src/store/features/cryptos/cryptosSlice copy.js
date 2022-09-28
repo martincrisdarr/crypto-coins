@@ -5,17 +5,11 @@ export const getCoins = createAsyncThunk('cryptos/getCoins', async ()=>{
   .then(res=> res.json()))
 })
 
-const cryptosAdapter = createEntityAdapter({
-  selectId: (crypto) => crypto.id
-})
-
 export const cryptosSlice = createSlice({
   name: 'cryptos',
   initialState: cryptosAdapter.getInitialState({loading: false}),
   reducers:{ 
-    setSearch(state,{payload}) {
-      state.push = payload
-    }
+    
   },
   extraReducers: {
    [getCoins.pending](state) {

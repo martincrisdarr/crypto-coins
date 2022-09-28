@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCoins, cryptosSelectors } from "../features/cryptos/cryptosSlice";
+import { getAllCryptos, filterCryptos } from "../../store/features/cryptos/cryptosSlice";
 import Coin from "../Cards/Coin";
 import Navbar from "../Navbar/Navbar";
 import TableDescriptions from "./TableDescriptions";
@@ -10,34 +10,41 @@ const styles = {
 };
 function CoinsMap() {
   const dispatch = useDispatch();
-  const allCryptos = useSelector(cryptosSelectors.selectAll);
-  const [message, setMessage] = useState("");
-  const [search, setSearch] = useState(null);
-
+  const {cryptos} = useSelector((state) => state.cryptos)  
   useEffect(() => {
-    dispatch(getCoins());
-    if (message === "") {
-      setSearch(null);
-    }
-  }, [message]);
+    dispatch(getAllCryptos());
+  }, []);
 
-  const handleChange = (e) => {
-    setMessage(e.target.value);
-    setSearch(
-      allCryptos.filter((crypto) =>
-        crypto.name.toLowerCase().includes(message.toLowerCase())
-      )
-    );
+
+ const arraySearch = (array, keyword) => {
+    const searchTerm = keyword.toLowerCase();
+    return array.filter((value) => {
+      return (
+        value.name.toLowerCase().match(new RegExp(searchTerm, 'g'))
+      );
+    });
   };
-
+  const handleChange = async (e) => {
+    const {value} = e.target
+    if (value.length > 2){
+      const search = await arraySearch(cryptos, value)
+      dispatch(filterCryptos(search))
+    } else {
+      dispatch(getAllCryptos());
+    }
+  };
+  
   return (
     <>
-      <Navbar message={handleChange} search={message} />
-      <div className={styles.container}>
-        <TableDescriptions />
-        {search
-          ? search.map((obj) => <Coin key={obj.id} coin={obj} />)
-          : allCryptos.map((crypto) => <Coin key={crypto.id} coin={crypto} />)}
+      <div className="animate__animated animate__fadeInRight">
+        <Navbar message={handleChange}  />
+        
+        <div className={styles.container}>
+          <TableDescriptions />
+              { cryptos.length && cryptos.map((crypto) => (
+                <Coin key={crypto.id} coin={crypto} />
+              ))} 
+        </div>
       </div>
     </>
   );
